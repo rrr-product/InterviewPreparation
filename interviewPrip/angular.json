@@ -24,7 +24,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "outputPath": "dist/interview-prep",
+            "outputPath": "dist/interview-prip",
             "assets": [
               {
                 "glob": "**/*",
