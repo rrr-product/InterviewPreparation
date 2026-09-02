@@ -24,7 +24,7 @@
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "outputPath": "dist/interviewPrip",
+            "outputPath": "dist/interviewPrip/browser",
             "assets": [
               {
                 "glob": "**/*",
