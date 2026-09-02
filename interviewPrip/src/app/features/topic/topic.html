@@ -1,0 +1,89 @@
+<div class="topic-container">
+  @if (topic()) {
+
+    <!-- Filters -->
+    <div class="filters">
+      <div class="search-col">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Search questions by title..." 
+          [(ngModel)]="searchQuery" 
+        />
+      </div>
+      <div class="diff-col relative">
+        <div class="custom-select form-control" (click)="toggleDropdown()">
+          <span class="select-text">
+            @if (selectedDifficulties().length === 0) {
+              All Difficulties
+            } @else {
+              {{ selectedDifficulties().length }} Selected
+            }
+          </span>
+          <svg class="chevron" [class.open]="isDropdownOpen()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
+        </div>
+
+        @if (isDropdownOpen()) {
+          <div class="dropdown-overlay" (click)="closeDropdown()"></div>
+          <div class="dropdown-menu card">
+            @for (diff of availableDifficulties; track diff) {
+              <label class="dropdown-item flex items-center gap-2" (click)="toggleDifficulty(diff, $event)">
+                <input 
+                  type="checkbox" 
+                  [checked]="selectedDifficulties().includes(diff)"
+                  (change)="toggleDifficulty(diff, $event)"
+                />
+                {{ diff }}
+              </label>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Questions Table -->
+    <div class="table-container card">
+      <table class="questions-table">
+        <thead>
+          <tr>
+            <th class="col-title text-left">Question</th>
+            <th class="col-diff text-center">Difficulty</th>
+            <th class="col-action text-right">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (question of filteredQuestions(); track question.id) {
+            <tr>
+              <td class="text-left"><span class="q-title font-medium">{{ question.title }}</span></td>
+              <td class="text-center"><span class="badge diff-{{ question.difficulty.toLowerCase() }}">{{ question.difficulty }}</span></td>
+              <td class="text-right flex justify-end">
+                <a [routerLink]="['/topics', slug(), 'questions', question.id]" 
+                   class="btn btn-icon" 
+                   title="View Answer" 
+                   aria-label="View Answer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="3" class="text-center text-secondary py-8 empty-state">
+                <p>No questions found for this difficulty.</p>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <div class="not-found text-center">
+      <h2>Topic not found.</h2>
+      <a routerLink="/" class="btn btn-primary mt-4">Go Home</a>
+    </div>
+  }
+</div>

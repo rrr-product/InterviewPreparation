@@ -1,0 +1,25 @@
+<div class="home-container">
+  <section class="hero text-center">
+    <h1 class="hero-title">Master Your Next <span class="text-primary">Interview</span></h1>
+    <p class="hero-subtitle">Comprehensive preparation for front-end, back-end, and full-stack technical interviews.</p>
+  </section>
+
+  <section class="topics-section">
+    <h2 class="section-title">Explore Topics</h2>
+    
+    <div class="topics-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (topic of topics(); track topic.slug) {
+        <a [routerLink]="['/topics', topic.slug]" class="card topic-card">
+          <div class="topic-header flex items-center justify-between">
+            <div class="topic-icon-wrap flex items-center gap-2">
+              <span class="topic-icon">{{ topic.icon }}</span>
+              <h3 class="topic-name">{{ topic.name }}</h3>
+            </div>
+            <span class="badge">{{ getQuestionCount(topic.slug) }} Qs</span>
+          </div>
+          <p class="topic-desc text-secondary">{{ topic.description }}</p>
+        </a>
+      }
+    </div>
+  </section>
+</div>

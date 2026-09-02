@@ -1,0 +1,45 @@
+<div class="app-layout">
+  <header class="app-header">
+    <div class="container flex items-center justify-between">
+      <a routerLink="/" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">Prep<span class="text-primary">Master</span></span>
+      </a>
+    </div>
+  </header>
+
+  @if (toolbar.isVisible()) {
+    <div class="sub-header">
+      <div class="container sub-header-content">
+        <nav class="breadcrumbs text-secondary">
+          @for (crumb of toolbar.breadcrumbs(); track crumb.label; let last = $last) {
+            @if (crumb.url) {
+              <a [routerLink]="crumb.url" class="breadcrumb-link">{{ crumb.label }}</a>
+            } @else {
+              <span class="current">{{ crumb.label }}</span>
+            }
+            @if (!last) {
+              <span class="separator">/</span>
+            }
+          }
+        </nav>
+        
+        @if (toolbar.title()) {
+          <div class="sub-header-title">{{ toolbar.title() }}</div>
+        }
+      </div>
+    </div>
+  }
+
+  <main class="app-main">
+    <div class="container">
+      <router-outlet />
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container text-center text-secondary">
+      <p>&copy; 2026 Interview Prep Master. All rights reserved.</p>
+    </div>
+  </footer>
+</div>

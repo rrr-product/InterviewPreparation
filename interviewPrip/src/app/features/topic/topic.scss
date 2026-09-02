@@ -1,0 +1,244 @@
+.topic-container {
+  padding-bottom: 2rem;
+}
+
+.breadcrumbs {
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.separator {
+  margin: 0 0.5rem;
+}
+
+.topic-header {
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-col,
+.diff-col {
+  width: 100%;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.relative {
+  position: relative;
+}
+
+.custom-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.chevron {
+  transition: transform var(--transition-fast);
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 0.5rem 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-secondary);
+}
+
+.dropdown-item input[type="checkbox"] {
+  accent-color: var(--primary-color);
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .filters {
+    flex-direction: row;
+  }
+  
+  .search-col {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .diff-col {
+    flex: 0 0 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  width: 100%;
+}
+
+.questions-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.questions-table th {
+  padding: 1.25rem 1.5rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.questions-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--card-border);
+  vertical-align: middle;
+}
+
+.questions-table tr:last-child td {
+  border-bottom: none;
+}
+
+.questions-table tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+.col-title {
+  width: 60%;
+}
+
+.col-diff {
+  width: 20%;
+}
+
+.col-action {
+  width: 20%;
+}
+
+.q-title {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.diff-beginner {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.diff-intermediate {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.diff-advanced {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.empty-state {
+  padding: 3rem;
+}
+
+.mt-4 { margin-top: 1rem; }
+.font-medium { font-weight: 500; }
+
+/* Responsive Table */
+@media (max-width: 767px) {
+  .questions-table thead {
+    display: none;
+  }
+  
+  .questions-table, 
+  .questions-table tbody, 
+  .questions-table tr, 
+  .questions-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .questions-table tr {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .questions-table td {
+    padding: 0;
+    border: none;
+    text-align: left !important;
+  }
+
+  /* Override the flex justify-end utility on the action column for mobile */
+  .questions-table td.text-right {
+    justify-content: flex-start !important;
+  }
+}

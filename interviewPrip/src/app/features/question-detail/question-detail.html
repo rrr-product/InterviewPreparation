@@ -1,0 +1,82 @@
+<div class="question-container">
+  @if (question() && topic()) {
+    <!-- Header Badges -->
+    <header class="question-header">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="badge topic-tag">{{ topic()?.name }}</span>
+        <span class="badge diff-{{ question()?.difficulty?.toLowerCase() }}">{{ question()?.difficulty }}</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="answer-content">
+      
+      <!-- Theoretical Explanation -->
+      <section class="card theory-section">
+        <h2 class="section-heading">Theoretical Explanation</h2>
+        <ul class="theory-list">
+          @for (point of question()?.theoreticalAnswer; track $index) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+      </section>
+
+      <!-- Primary Approach -->
+      @if (question()?.primaryApproach; as approach) {
+        <section class="card approach-section">
+          <div class="approach-header">
+            <h2 class="section-heading">{{ approach.title }}</h2>
+            <p class="approach-desc">{{ approach.description }}</p>
+          </div>
+
+          <div class="code-block-wrapper">
+            <div class="code-header flex justify-between items-center">
+              <span class="lang-tag">{{ approach.codeSnippet.language }}</span>
+              <button class="btn btn-outline copy-btn" (click)="copyCode(approach.codeSnippet.code)">
+                Copy Code
+              </button>
+            </div>
+            <pre><code class="language-{{ approach.codeSnippet.language }}">{{ approach.codeSnippet.code }}</code></pre>
+          </div>
+
+          @if (approach.codeSnippet.output) {
+            <div class="output-block">
+              <h4 class="output-heading">Expected Output:</h4>
+              <pre class="output-pre"><code>{{ approach.codeSnippet.output }}</code></pre>
+            </div>
+          }
+
+          @if (approach.codeSnippet.explanation) {
+            <div class="explanation-block">
+              <h4 class="explanation-heading">Walkthrough:</h4>
+              <p>{{ approach.codeSnippet.explanation }}</p>
+            </div>
+          }
+        </section>
+      }
+
+    </div>
+
+    <!-- Navigation -->
+    <nav class="question-nav flex justify-between">
+      @if (prevQuestion()) {
+        <a [routerLink]="['/topics', slug(), 'questions', prevQuestion()?.id]" class="btn btn-outline nav-btn prev-btn">
+          &larr; Previous Question
+        </a>
+      } @else {
+        <div></div>
+      }
+
+      @if (nextQuestion()) {
+        <a [routerLink]="['/topics', slug(), 'questions', nextQuestion()?.id]" class="btn btn-outline nav-btn next-btn">
+          Next Question &rarr;
+        </a>
+      }
+    </nav>
+  } @else {
+    <div class="not-found text-center">
+      <h2>Question not found.</h2>
+      <a [routerLink]="['/topics', slug()]" class="btn btn-primary mt-4">Back to Topic</a>
+    </div>
+  }
+</div>
