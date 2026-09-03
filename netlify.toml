@@ -1,0 +1,9 @@
+[build]
+  base = "interviewPrip"
+  command = "npm run build"
+  publish = "dist/interviewPrip/browser"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
