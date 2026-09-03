@@ -37,6 +37,12 @@
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background-color: var(--bg-color);
+  padding-top: 1rem;
+  margin-top: -1rem;
 }
 
 .search-col,
@@ -134,6 +140,8 @@
 
 .table-container {
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 60vh;
   border-radius: var(--radius-lg);
   padding: 0;
   width: 100%;
@@ -154,6 +162,9 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .questions-table td {
